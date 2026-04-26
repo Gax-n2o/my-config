@@ -114,7 +114,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 # Snap
 cd ~/github
 wget https://deb.parrot.sh/pool/main/s/snapd/snapd_2.66.1-1_amd64.deb
-sudo apt install ./snapd_2.66.1-1_amd64.deb
+sudo dpkg -i snapd_2.66.1-1_amd64.deb
 
 # instslando lsd
 sudo dpkg -i $ruta/lsd1.2.0.deb
@@ -126,13 +126,14 @@ sudo dpkg -i $ruta/bat0.26.1.deb
 
 cd ~/github
 wget http://ftp.debian.org/debian/pool/main/x/xautolock/xautolock_2.2-8_amd64.deb
+sudo dpkg -i xautolock_2.2-8_amd64.deb
 
-sudo apt install ./xautolock_2.2-8_amd64.deb
-
+#tmux
 git clone --single-branch https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
 
+#betterlockscreen
 git clone https://github.com/betterlockscreen/betterlockscreen 
 cd betterlockscreen 
 sudo ./install.sh
@@ -146,7 +147,7 @@ sudo snap install obsidian --classic
 
 sudo apt install thunderbird -y
 
-Sudo apt install thunar
+sudo apt install thunar
 
 # Install freetube
 flatpak install flathub io.freetubeapp.FreeTube
