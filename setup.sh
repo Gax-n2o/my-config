@@ -1,4 +1,4 @@
-#!/bin/bsh
+#!/bin/bash
 
 # Colores para output
 R='\033[0;31m'
@@ -108,6 +108,14 @@ chsh -s /usr/bin/zsh
 sudo usermod --shell /usr/bin/zsh root
 sudo ln -s -fv ~/.zshrc /root/.zshrc
 
+# instalar snap y flatpak
+sudo apt install flatpak -y
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+# Snap
+cd ~/github
+wget https://deb.parrot.sh/pool/main/s/snapd/snapd_2.66.1-1_amd64.deb
+sudo apt install ./snapd_2.66.1-1_amd64.deb
+
 # instslando lsd
 sudo dpkg -i $ruta/lsd1.2.0.deb
 
@@ -142,6 +150,7 @@ Sudo apt install thunar
 
 # Install freetube
 flatpak install flathub io.freetubeapp.FreeTube
+sudo flatpak repair
 
 # Instalando de mas apt
 
@@ -220,16 +229,9 @@ done
 
 # Ajustes al rofi
 echo -e "${Y}Ajustando el rofi${NC}"
-if [ -d $HOME/.config/rofi.n2o ]; then
+if [ -d $HOME/.config/rofi ]; then
 # Cambiarle el nombre a rofin2o por rofi
-  cd $HOME/.config/
   mv rofi.n2o rofi
-# Crear la carpeta Script
-  mkdir -p rofi/scripts
-# Moverse a la carpeta rofi y mover los archivos
-  cd $HOME/.config/rofi/
-  mv launcher_* scripts
-  mv powermenu_* scripts
   echo -e "${G}✅ Ajustes  de rofi Cambiados exitosamente${NC}"
 else
   echo -e "${R}⚠️ Ajustes del rofi.n2o no Encontrados${NC}"
@@ -270,9 +272,9 @@ echo -e "${G}🔑 Permisos Establecidos Exitosamente${NC}"
 # Instalando Wallpaper de S4vitar
 
 mkdir ~/Wallpaper
-cp -v $ruta/Wallpaper/* ~/Wallpaper
+cp -v $ruta/Wallpaper/*.jpg ~/Wallpaper/
 mkdir ~/Wall-lock
-cp ~/Wallpaper/*.jpg ~/Wall-lock
+cp $ruta/Wallpaper/*.jpg ~/Wall-lock/
 
 # Limpiar
 
