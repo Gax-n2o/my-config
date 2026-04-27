@@ -73,19 +73,6 @@ echo -e "${G}📥 Descargando tus configuraciones personales...${NC}"
 cd
 git clone "$MY_CONFIGS"
 
-if [ ! -d "My-config" ]; then
-  echo -e "si existe la carpeta vamos a modificar la carpeta del rofi"
-  cd My-config
-  mv rofi.n2o rofi
-  cd rofi
-  mkdir scripts
-  mv launcher_* scripts
-  mv powermenu_* scripts
-else 
- echo -e "La carpeta no fue encontrada"
-fi 
-exit 1
-
 # Reemplazar configuraciones
 echo -e "${G}🔄 Aplicando tus configuraciones...${NC}"
 
