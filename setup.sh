@@ -70,10 +70,6 @@ echo 'source ~/.powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 
 sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/.powerlevel10k
 
-# Instando lsd
-
-sudo dpkg -i $ruta/lsd.deb
-
 # Instalamos las HackNerdFonts
 
 sudo cp -v $ruta/fonts/HNF/* /usr/local/share/fonts/
@@ -118,6 +114,7 @@ sudo usermod --shell /usr/bin/zsh root
 sudo ln -s -fv ~/.zshrc /root/.zshrc
 
 # instalar snap y flatpak
+sudo apt install snapd
 sudo apt install flatpak -y
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
