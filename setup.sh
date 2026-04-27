@@ -209,7 +209,7 @@ declare -A config_map=(
 echo -e "${G}🔄 Ajustando tus Configuraciones de archivos"
 declare -A home_file=(
     ["zshr"]="$HOME/.zshrc"
-    ["nanorc"]="$HOME.nanorc"
+    ["nanorc"]="$HOME/.nanorc"
 )
 sleep 3
 
