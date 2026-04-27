@@ -9,7 +9,7 @@ NC='\033[0m'
 # Configuración
 MY_CONFIGS="https://github.com/Gax-n2o/My-config.git"
 ruta=$(pwd)
-dir="HOME/My-config"
+dir1="HOME/My-config"
 
 mkdir -p ~/github
 
@@ -124,7 +124,7 @@ for dir in "${!config_map[@]}"; do
         # Eliminar configuración existente si la hay
         rm -rf "${config_map[$dir]}"
         # Copiar nueva configuración
-        cp -r "$dir" "${config_map[$dir]}"
+        cp -r "$dir1" "${config_map[$dir]}"
         echo -e "${GREEN}✅ $dir configurado${NC}"
     else
         echo -e "${YELLOW}⚠️  No se encontró configuración para $dir en tu repo${NC}"
@@ -136,7 +136,7 @@ for file in "${!home_file[@]}"; do
         # Eliminar configuración existente si la hay
         rm -rf "${home_file[$file]}"
         # Copiar nueva configuración
-        cp -r "$file" "${home_file[$file]}"
+        cp -r "$dir1" "${home_file[$file]}"
         echo -e "${GREEN}✅ $file configurado${NC}"
     else
         echo -e "${YELLOW}⚠️  No se encontró configuración para $file en tu repo${NC}"
