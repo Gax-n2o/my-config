@@ -8,14 +8,72 @@ NC='\033[0m'
 
 # Configuración
 MY_CONFIGS="https://github.com/Gax-n2o/My-config.git"
-FOLDER2="$HOME/myconfig"
+ruta=$(pwd)
+dir="HOME/My-config"
+
+mkdir -p ~/github
+
+# Script
+sudo cp -av $ruta/scripts/autonmap ~/.local/bin
+
+# instalar snap y flatpak
+sudo apt install snapd
+sudo apt install flatpak -y
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# Instalando xautolock, betterlock y tmux
+
+cd ~/github
+wget http://ftp.debian.org/debian/pool/main/x/xautolock/xautolock_2.2-8_amd64.deb
+sudo dpkg -i xautolock_2.2-8_amd64.deb
+
+#tmux
+cd ~/github
+git clone --single-branch https://github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local .
+
+#betterlockscreen
+git clone https://github.com/betterlockscreen/betterlockscreen 
+cd betterlockscreen 
+sudo ./install.sh
+
+# Instalar i3lock imagemagick
+sudo apt install i3lock imagemagick bc feh
+
+# Instalar Obsidian thunderbird y thunar
+
+sudo snap install obsidian --classic
+
+sudo apt install thunderbird -y
+
+sudo apt install thunar -y
+
+# Install freetube
+flatpak install flathub io.freetubeapp.FreeTube 
+sudo flatpak repair
+
+# Instalando de mas apt
+
+sudo apt install arandr
+sudo apt install blueman bluez bluez-tools pulseaudio-module-bluetooth -y
+
+#Instalando xclip
+sudo apt install xclip
+
+#Crontab para la actualizacion automatica de updates
+sudo crontab -l > /tmp/micron 2>/dev/null
+echo "*/30 * * * * /usr/bin/apt update >/dev/null 2>&1 && /usr/bin/apt list --upgradable 2>/dev/null | /bin/grep -E '^[^[:space:]]+[[:space:]]+' | /usr/bin/tee /home/n2o/.config/bin/updates-full.txt | /usr/bin/wc -l > /home/n2o/.config/bin/updates-count.txt" >> /tmp/micron
+# Cargar el archivo
+sudo crontab /tmp/micron
+rm /tmp/micron
 
 # Clonar tus configuraciones personales
 echo -e "${G}📥 Descargando tus configuraciones personales...${NC}"
 cd
-git clone "$MY_CONFIGS" "$FOLDER2"
+git clone "$MY_CONFIGS"
 
-if [ ! -d "$FOLDER2/My-config" ]; then
+if [ ! -d "My-config" ]; then
   echo -e "si existe la carpeta vamos a modificar la carpeta del rofi"
   cd My-config
   mv rofi.n2o rofi
@@ -58,15 +116,15 @@ declare -A config_map=(
 echo -e "${G}🔄 Ajustando tus Configuraciones de archivos"
 declare -A home_file=(
     ["zshr"]="$HOME/.zshrc"
-    ["nanorc"]="$HOME/.config/nanorc"
+    ["nanorc"]="$HOME/.nanorc"
 )
 
 for dir in "${!config_map[@]}"; do
-    if [ -d "$FOLDER2/$dir" ]; then
+    if [ -d "$dir" ]; then
         # Eliminar configuración existente si la hay
         rm -rf "${config_map[$dir]}"
         # Copiar nueva configuración
-        cp -r "$FOLDER2/$dir" "${config_map[$dir]}"
+        cp -r "$dir" "${config_map[$dir]}"
         echo -e "${GREEN}✅ $dir configurado${NC}"
     else
         echo -e "${YELLOW}⚠️  No se encontró configuración para $dir en tu repo${NC}"
@@ -74,11 +132,11 @@ for dir in "${!config_map[@]}"; do
 done
 
 for file in "${!home_file[@]}"; do
-    if [ -f "$FOLDER2/$file" ]; then
+    if [ -f "$file" ]; then
         # Eliminar configuración existente si la hay
         rm -rf "${home_file[$file]}"
         # Copiar nueva configuración
-        cp -r "$FOLDER2/$file" "${home_file[$file]}"
+        cp -r "$file" "${home_file[$file]}"
         echo -e "${GREEN}✅ $file configurado${NC}"
     else
         echo -e "${YELLOW}⚠️  No se encontró configuración para $file en tu repo${NC}"
@@ -115,8 +173,8 @@ chmod +x $HOME/.config/rofi/powermenu/type-2/powermenu.sh 2>/dev/null
 chmod +x $HOME/.config/rofi/powermenu/type-1/powermenu.sh 2>/dev/null
 echo -e "${GREEN}🔑 Permisos Establecidos Exitosamente${NC}"
 
-# Limpiar
-rm -rf "$FOLDER2"
+# restaurando el entorno virtual, si se hace desce el entorno virtual.
+xrandr --output Virtual1 --mode 1920x1080
 
 echo -e "${GREEN}✨ Setup completado!${NC}"
 echo -e "${YELLOW}💡 Puedes cerrar sesion y entrar a bspwm${NC}"
