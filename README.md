@@ -18,3 +18,4 @@ cd ..
 chmod +x setup.sh
 ./setup.sh
 ```
+Solo faltaria descargar eww desde su repositorio en Github junto con todas sus dependencias, eso varia de entorno y queda agusto personal de la persona, y solo se utiliza para sacar el calendario, no es una configuracion importante o trascendental, Asi que solo lo dejaria gusto personal.
