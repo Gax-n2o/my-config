@@ -129,6 +129,7 @@ wget http://ftp.debian.org/debian/pool/main/x/xautolock/xautolock_2.2-8_amd64.de
 sudo dpkg -i xautolock_2.2-8_amd64.deb
 
 #tmux
+cd ~/github
 git clone --single-branch https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
@@ -139,7 +140,7 @@ cd betterlockscreen
 sudo ./install.sh
 
 # Instalar i3lock imagemagick
-sudo apt update sudo apt install i3lock imagemagick bc feh
+sudo apt install i3lock imagemagick bc feh
 
 # Instalar Obsidian thunderbird y thunar
 
@@ -147,16 +148,16 @@ sudo snap install obsidian --classic
 
 sudo apt install thunderbird -y
 
-sudo apt install thunar
+sudo apt install thunar -y
 
 # Install freetube
-flatpak install flathub io.freetubeapp.FreeTube
+flatpak install flathub io.freetubeapp.FreeTube 
 sudo flatpak repair
 
 # Instalando de mas apt
 
 sudo apt install arandr
-sudo apt install blueman bluez bluez-tools pulseaudio-module-bluetooth
+sudo apt install blueman bluez bluez-tools pulseaudio-module-bluetooth -y
 
 #Instalando xclip
 sudo apt install xclip
