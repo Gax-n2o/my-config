@@ -80,7 +80,15 @@ sudo cp -v $ruta/fonts/HNF/* /usr/local/share/fonts/
 
 # Instalando Fuentes de Polybar
 
-sudo cp -v $ruta/Config/polybar/fonts/* /usr/share/fonts/truetype/
+sudo cp -v $ruta/polybar/fonts/* /usr/share/fonts/truetype/
+
+# Copiando Archivos de Configuración
+
+sudo cp -rv $ruta/kitty /opt/
+
+# Kitty Root
+
+sudo cp -rv $ruta/kitty /root/.config/
 
 # Copia de configuracion de .p10k.zsh y .zshrc
 
@@ -172,7 +180,7 @@ rm /tmp/micron
 
 # Reemplazar configuraciones
 echo -e "${G}🔄 Aplicando tus configuraciones...${NC}"
-
+sleep 3
 # Asegurar estructura de directorios
 if [ ! -d $HOME/.config ]; then
   echo -e "${Y}Creando Direnctorio config${NC}"
@@ -180,10 +188,7 @@ if [ ! -d $HOME/.config ]; then
 else 
   echo -e "${G}El Directorio config ya esta creado${NC}"
 fi
-
-# Moviendo la config de rofi
-rm $ruta/rofi.n2o/config.rasi
-mv $ruta/config.rasi $ruta/rofi.n2o/
+sleep 3
 
 # Copiar configuraciones específicas
 echo -e "${G}🔄 Ajustando tus Configuraciones de directorios"
@@ -206,30 +211,33 @@ declare -A home_file=(
     ["zshr"]="$HOME/.zshrc"
     ["nanorc"]="$HOME/.config/.nanorc"
 )
+sleep 3
 
 for dir in "${!config_map[@]}"; do
     if [ -d "$ruta/$dir" ]; then
         # Eliminar configuración existente si la hay
         rm -rf "${config_map[$dir]}"
         # Copiar nueva configuración
-        cp -r "$ruta/$dir" "${config_map[$dir]}"
+        cp -a "$ruta/$dir" "${config_map[$dir]}"
         echo -e "${GREEN}✅ $dir configurado${NC}"
     else
         echo -e "${YELLOW}⚠️  No se encontró configuración para $dir en tu repo${NC}"
     fi
 done
+sleep 3
 
 for file in "${!home_file[@]}"; do
     if [ -f "$ruta/$file" ]; then
         # Eliminar configuración existente si la hay
         rm -rf "${home_file[$file]}"
         # Copiar nueva configuración
-        cp -r "$ruta/$file" "${home_file[$file]}"
+        cp -a "$ruta/$file" "${home_file[$file]}"
         echo -e "${GREEN}✅ $file configurado${NC}"
     else
         echo -e "${YELLOW}⚠️  No se encontró configuración para $file en tu repo${NC}"
     fi
 done
+  sleep 3
   
 # Establecer permisos correctos
 echo -e "${GREEN}🔑 Estableciendo permisos...${NC}"
@@ -261,7 +269,7 @@ chmod +x $HOME/.config/rofi/powermenu/type-2/powermenu.sh 2>/dev/null
 chmod +x $HOME/.config/rofi/powermenu/type-1/powermenu.sh 2>/dev/null
 
 echo -e "${G}🔑 Permisos Establecidos Exitosamente${NC}"
-
+sleep 3
 
 # Limpiar
 
