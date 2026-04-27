@@ -80,12 +80,12 @@ sudo cp -v $ruta/polybar/fonts/* /usr/share/fonts/truetype/
 
 # Copiando Archivos de Configuración
 
-cp -rv $ruta/Config/* ~/.config/
-sudo cp -rv $ruta/kitty /opt/
+cp -rv $ruta/config/* ~/.config/
+sudo cp -rv $ruta/config/kitty /opt/
 
 # Kitty Root
 
-sudo cp -rv $ruta/kitty /root/.config/
+sudo cp -rv $ruta/config/kitty /root/.config/
 
 # Copia de configuracion de .p10k.zsh y .zshrc
 
@@ -118,11 +118,6 @@ sudo ln -s -fv ~/.zshrc /root/.zshrc
 sudo apt install snapd
 sudo apt install flatpak -y
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-# Snap
-cd ~/github
-wget https://deb.parrot.sh/pool/main/s/snapd/snapd_2.66.1-1_amd64.deb
-sudo dpkg -i snapd_2.66.1-1_amd64.deb
 
 # instslando lsd
 sudo dpkg -i $ruta/lsd1.2.0.deb
