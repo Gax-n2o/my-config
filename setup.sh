@@ -94,6 +94,7 @@ sudo cp -rv $ruta/kitty /root/.config/
 
 rm -rf ~/.zshrc
 cp -av $ruta/.zshrc ~/.zshrc
+cp -av $ruta/.nanorc ~/.nanorc
 
 cp -av $ruta/.p10k.zsh ~/.p10k.zsh
 sudo cp -av $ruta/.p10k.zsh-root /root/.p10k.zsh
@@ -203,13 +204,6 @@ declare -A config_map=(
     ["picom"]="$HOME/.config/picom"
     ["mpv"]="$HOME/.config/mpv"
     ["Wallpaper"]="$HOME/Wallpaper"
-)  
-    
-# Archivos que van directamente al home
-echo -e "${G}🔄 Ajustando tus Configuraciones de archivos"
-declare -A home_file=(
-    ["zshr"]="$HOME/.zshrc"
-    ["nanorc"]="$HOME/.nanorc"
 )
 sleep 3
 
@@ -225,19 +219,6 @@ for dir in "${!config_map[@]}"; do
     fi
 done
 sleep 3
-
-for file in "${!home_file[@]}"; do
-    if [ -f "$ruta/$file" ]; then
-        # Eliminar configuración existente si la hay
-        rm -rf "${home_file[$file]}"
-        # Copiar nueva configuración
-        cp -a "$ruta/$file" "${home_file[$file]}"
-        echo -e "${GREEN}✅ $file configurado${NC}"
-    else
-        echo -e "${YELLOW}⚠️  No se encontró configuración para $file en tu repo${NC}"
-    fi
-done
-  sleep 3
   
 # Establecer permisos correctos
 echo -e "${GREEN}🔑 Estableciendo permisos...${NC}"
