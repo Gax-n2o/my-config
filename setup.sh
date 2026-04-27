@@ -81,7 +81,7 @@ sudo cp -v $ruta/polybar/fonts/* /usr/share/fonts/truetype/
 # Copiando Archivos de Configuración
 
 cp -rv $ruta/config/* ~/.config/
-sudo cp -rv $ruta/config/kitty /opt/
+sudo cp -rv $ruta/config/kitty /opt/kitty/bin/
 
 # Kitty Root
 
