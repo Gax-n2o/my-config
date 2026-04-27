@@ -8,8 +8,8 @@ NC='\033[0m'
 
 # Configuración
 MY_CONFIGS="https://github.com/Gax-n2o/My-config.git"
-ruta=$(pwd)
-dir1="HOME/My-config"
+ruta=$(pwd)"
+FOLDER2=($HOME/My-config)
 
 mkdir -p ~/github
 
@@ -71,7 +71,7 @@ rm /tmp/micron
 # Clonar tus configuraciones personales
 echo -e "${G}📥 Descargando tus configuraciones personales...${NC}"
 cd
-git clone "$MY_CONFIGS"
+git clone "$MY_CONFIGS" "$FOLDER2"
 
 # Reemplazar configuraciones
 echo -e "${G}🔄 Aplicando tus configuraciones...${NC}"
@@ -111,7 +111,7 @@ for dir in "${!config_map[@]}"; do
         # Eliminar configuración existente si la hay
         rm -rf "${config_map[$dir]}"
         # Copiar nueva configuración
-        cp -r "$dir1" "${config_map[$dir]}"
+        cp -r "$FOLDER2/$dir" "${config_map[$dir]}"
         echo -e "${GREEN}✅ $dir configurado${NC}"
     else
         echo -e "${YELLOW}⚠️  No se encontró configuración para $dir en tu repo${NC}"
@@ -123,7 +123,7 @@ for file in "${!home_file[@]}"; do
         # Eliminar configuración existente si la hay
         rm -rf "${home_file[$file]}"
         # Copiar nueva configuración
-        cp -r "$dir1" "${home_file[$file]}"
+        cp -r "$FOLDER2" "${home_file[$file]}"
         echo -e "${GREEN}✅ $file configurado${NC}"
     else
         echo -e "${YELLOW}⚠️  No se encontró configuración para $file en tu repo${NC}"
