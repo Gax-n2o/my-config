@@ -9,7 +9,7 @@ NC='\033[0m'
 # Configuración
 MY_CONFIGS="https://github.com/Gax-n2o/My-config.git"
 ruta=$(pwd)
-FOLDER="$HOME/My-config"
+FOLDER="$HOME/Myconfig"
 
 mkdir -p ~/github
 
