@@ -85,15 +85,15 @@ sudo cp -v $ruta/Config/polybar/fonts/* /usr/share/fonts/truetype/
 # Copia de configuracion de .p10k.zsh y .zshrc
 
 rm -rf ~/.zshrc
-cp -v $ruta/.zshrc ~/.zshrc
+cp -av $ruta/.zshrc ~/.zshrc
 
-cp -v $ruta/.p10k.zsh ~/.p10k.zsh
-sudo cp -v $ruta/.p10k.zsh-root /root/.p10k.zsh
+cp -av $ruta/.p10k.zsh ~/.p10k.zsh
+sudo cp -av $ruta/.p10k.zsh-root /root/.p10k.zsh
 
 # Script
 
-sudo cp -v $ruta/scripts/whichSystem.py /usr/local/bin/
-sudo cp -v $ruta/scripts/autonmap ~/.local/bin
+sudo cp -av $ruta/scripts/whichSystem.py /usr/local/bin/
+sudo cp -av $ruta/scripts/autonmap ~/.local/bin
 
 # Plugins ZSH
 
@@ -111,6 +111,7 @@ sudo ln -s -fv ~/.zshrc /root/.zshrc
 # instalar snap y flatpak
 sudo apt install flatpak -y
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
 # Snap
 cd ~/github
 wget https://deb.parrot.sh/pool/main/s/snapd/snapd_2.66.1-1_amd64.deb
@@ -196,13 +197,14 @@ declare -A config_map=(
     ["kitty"]="$HOME/.config/kitty"
     ["picom"]="$HOME/.config/picom"
     ["mpv"]="$HOME/.config/mpv"
+    ["Wallpaper"]="$HOME/Wallpaper"
 )  
     
 # Archivos que van directamente al home
 echo -e "${G}🔄 Ajustando tus Configuraciones de archivos"
 declare -A home_file=(
     ["zshr"]="$HOME/.zshrc"
-    ["nanorc"]="$HOME/.config/nanorc"
+    ["nanorc"]="$HOME/.config/.nanorc"
 )
 
 for dir in "${!config_map[@]}"; do
@@ -228,17 +230,6 @@ for file in "${!home_file[@]}"; do
         echo -e "${YELLOW}⚠️  No se encontró configuración para $file en tu repo${NC}"
     fi
 done
-
-# Ajustes al rofi
-echo -e "${Y}Ajustando el rofi${NC}"
-if [ -d $HOME/.config/rofi ]; then
-# Cambiarle el nombre a rofin2o por rofi
-  mv rofi.n2o rofi
-  echo -e "${G}✅ Ajustes  de rofi Cambiados exitosamente${NC}"
-else
-  echo -e "${R}⚠️ Ajustes del rofi.n2o no Encontrados${NC}"
-fi
-
   
 # Establecer permisos correctos
 echo -e "${GREEN}🔑 Estableciendo permisos...${NC}"
@@ -271,12 +262,6 @@ chmod +x $HOME/.config/rofi/powermenu/type-1/powermenu.sh 2>/dev/null
 
 echo -e "${G}🔑 Permisos Establecidos Exitosamente${NC}"
 
-# Instalando Wallpaper de S4vitar
-
-mkdir ~/Wallpaper
-cp -v $ruta/Wallpaper/*.jpg ~/Wallpaper/
-mkdir ~/Wall-lock
-cp $ruta/Wallpaper/*.jpg ~/Wall-lock/
 
 # Limpiar
 
