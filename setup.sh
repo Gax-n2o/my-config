@@ -80,6 +80,7 @@ sudo cp -v $ruta/polybar/fonts/* /usr/share/fonts/truetype/
 
 # Copiando Archivos de Configuración
 
+cp -rv $ruta/Config/* ~/.config/
 sudo cp -rv $ruta/kitty /opt/
 
 # Kitty Root
@@ -177,44 +178,44 @@ sudo crontab /tmp/micron
 rm /tmp/micron
 
 # Reemplazar configuraciones
-echo -e "${G}🔄 Aplicando tus configuraciones...${NC}"
-sleep 3
+#echo -e "${G}🔄 Aplicando tus configuraciones...${NC}"
+#sleep 3
 # Asegurar estructura de directorios
-if [ ! -d $HOME/.config ]; then
-  echo -e "${Y}Creando Direnctorio config${NC}"
-  mkdir -p $HOME/.config
-else 
-  echo -e "${G}El Directorio config ya esta creado${NC}"
-fi
-sleep 3
+#if [ ! -d $HOME/.config ]; then
+#  echo -e "${Y}Creando Direnctorio config${NC}"
+#  mkdir -p $HOME/.config
+#else 
+#  echo -e "${G}El Directorio config ya esta creado${NC}"
+#fi
+#sleep 3
 
 # Copiar configuraciones específicas
-echo -e "${G}🔄 Ajustando tus Configuraciones de directorios"
-declare -A config_map=(
-    ["bspwm"]="$HOME/.config/bspwm"
-    ["sxhkd"]="$HOME/.config/sxhkd"
-    ["polybar"]="$HOME/.config/polybar"
-    ["rofi"]="$HOME/.config/rofi"
-    ["eww"]="$HOME/.config/eww"
-    ["bin"]="$HOME/.config/bin"
-    ["kitty"]="$HOME/.config/kitty"
-    ["picom"]="$HOME/.config/picom"
-    ["mpv"]="$HOME/.config/mpv"
-    ["Wallpaper"]="$HOME/Wallpaper"
-)
-sleep 3
+#echo -e "${G}🔄 Ajustando tus Configuraciones de directorios"
+#declare -A config_map=(
+#    ["bspwm"]="$HOME/.config/bspwm"
+#    ["sxhkd"]="$HOME/.config/sxhkd"
+#    ["polybar"]="$HOME/.config/polybar"
+#    ["rofi"]="$HOME/.config/rofi"
+#    ["eww"]="$HOME/.config/eww"
+#    ["bin"]="$HOME/.config/bin"
+#    ["kitty"]="$HOME/.config/kitty"
+#    ["picom"]="$HOME/.config/picom"
+#    ["mpv"]="$HOME/.config/mpv"
+#    ["Wallpaper"]="$HOME/Wallpaper"
+#)
+#sleep 3
 
-for dir in "${!config_map[@]}"; do
-    if [ -d "$ruta/$dir" ]; then
-        # Eliminar configuración existente si la hay
-        rm -rf "${config_map[$dir]}"
-        # Copiar nueva configuración
-        cp -a "$ruta/$dir" "${config_map[$dir]}"
-        echo -e "${GREEN}✅ $dir configurado${NC}"
-    else
-        echo -e "${YELLOW}⚠️  No se encontró configuración para $dir en tu repo${NC}"
-    fi
-done
+#for dir in "${!config_map[@]}"; do
+#    if [ -d "$ruta/$dir" ]; then
+#        # Eliminar configuración existente si la hay
+#        rm -rf "${config_map[$dir]}"
+#        # Copiar nueva configuración
+#       cp -a "$ruta/$dir" "${config_map[$dir]}"
+#        echo -e "${GREEN}✅ $dir configurado${NC}"
+#    else
+#        echo -e "${YELLOW}⚠️  No se encontró configuración para $dir en tu repo${NC}"
+#    fi
+#done
 sleep 3
   
 # Establecer permisos correctos
