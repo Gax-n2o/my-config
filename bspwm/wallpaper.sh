@@ -10,7 +10,8 @@
 
 # ---------- CONFIGURACIÓN ----------
 # Ruta a tu carpeta de wallpapers (¡cámbiala si es necesario!)
-WALLPAPER_DIR="/home/n2o/Wallpaper"
+WALLPAPER_DIR="$HOME/Wallpaper"
+WALL_LOCK="$HOME/Wall-lock"
 
 # Archivo donde se guarda el índice del último wallpaper usado
 INDEX_FILE="$HOME/.config/bspwm/.wallpaper_index"
@@ -54,6 +55,14 @@ feh --bg-fill "${imagenes[$idx]}"
 
 # Incrementar el índice para la próxima vez
 echo $(( index + 1 )) > "$INDEX_FILE"
+
+if [ ! -d "$WALL_LOCK" ]; then
+    echo "Error: La carpeta $WALL_LOCK no existe, Creando Carpeta." >&2
+    mkdir -p $HOME/Wall_lock
+    cp $HOME/Wallpaper/*.jpg $HOME/Wall_lock
+else 
+    echo "la carpeta ya esta creada" >&2
+fi
 
 # Fin
 exit 0
