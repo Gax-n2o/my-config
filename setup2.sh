@@ -111,7 +111,7 @@ for dir in "${!config_map[@]}"; do
         # Eliminar configuración existente si la hay
         rm -rf "${config_map[$dir]}"
         # Copiar nueva configuración
-        cp -r "$FOLDER2/$dir" "${config_map[$dir]}"
+        cp -r "$ruta" "${config_map[$dir]}"
         echo -e "${GREEN}✅ $dir configurado${NC}"
     else
         echo -e "${YELLOW}⚠️  No se encontró configuración para $dir en tu repo${NC}"
@@ -123,7 +123,7 @@ for file in "${!home_file[@]}"; do
         # Eliminar configuración existente si la hay
         rm -rf "${home_file[$file]}"
         # Copiar nueva configuración
-        cp -r "$FOLDER2" "${home_file[$file]}"
+        cp -r "$ruta" "${home_file[$file]}"
         echo -e "${GREEN}✅ $file configurado${NC}"
     else
         echo -e "${YELLOW}⚠️  No se encontró configuración para $file en tu repo${NC}"
@@ -162,6 +162,10 @@ echo -e "${GREEN}🔑 Permisos Establecidos Exitosamente${NC}"
 
 # restaurando el entorno virtual, si se hace desce el entorno virtual.
 xrandr --output Virtual1 --mode 1920x1080
+
+# Eliminar
+rm -rf "$ruta"
+rm -rf "~/github"
 
 echo -e "${GREEN}✨ Setup completado!${NC}"
 echo -e "${YELLOW}💡 Puedes cerrar sesion y entrar a bspwm${NC}"
